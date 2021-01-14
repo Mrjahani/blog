@@ -1,15 +1,28 @@
+<!-- baray namayesh file hai js , css dar project b kar miravad -->
 {% load static %}
 <html>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">	
 
-<title> first page </title>
+<title>
+	{% block head %}
+		index
+	{% endblock head %}
+</title>
+
+
+
 
 
 <body style="text-align=rtl">
     {{ posts.0.title }}
     
     <p> {{ posts.0.body }} </p>
+
+    <form action="">
+    	<label for="">username:</label>
+    	<input type="text" >
+    </form>
 </body>
 
 
 </html>
-
