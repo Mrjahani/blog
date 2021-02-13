@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+<html>
+
+    {% block head %}
+        show post
+    {% endblock head %}
+
+
+{% block content %}
+	{{ post.title}}
+    <hr>
+
+    {{ post.body  }}    
+    <br>
+    {{ post.text|safe|truncatechars_html:120}}
+{% endblock content %}
+
+
+
+
+</html>

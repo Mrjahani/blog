@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+
+
+{% block head %}
+    article
+
+{% endblock head %}
+
+
+
+{% block content %}
+    {% for article in articles %}
+        <a href="{{ article.slug }}"> {{ article.title }} </a>
+
+        <p> 
+            {{ article.description | truncatechars_html:120 }}
+        </p>
+
+    {% endfor %}
+
+{% endblock content %}
+

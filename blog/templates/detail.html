@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    {{ article.title }}
+{% endblock head %}
+
+
+{% block title %}
+{{ article.title }}
+{% endblock title %}
+    
+
+{% block content %}
+
+<section class="blog-page single-blog-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+      <div class="single-blog-details">
+          <div class="img">
+              <img src="{{ article.image.url }}" alt="">
+          </div>
+          <div class="content">
+              <ul class="top-meta">
+                  <li>
+                      <p class="date">
+                            {{ article.publish }}
+                      </p>
+                  </li>
+                  <li>
+                      <p class="post-by">
+                          توسط مدیر
+                      </p>
+                  </li>
+              </ul>
+              <a href="#">
+                  <h4 class="title">
+                      {{ article.title }}
+                  </h4>
+              </a>
+              <div class="text-area">
+                  
+                  <blockquote>
+                      <p>
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است
+                      </p>
+                  </blockquote>
+                  {{ article.description | linebreaks }}
+              </div>
+          </div>
+      </div>
+      <div class="comment-area">
+          <h4 class="title">
+              نظرات
+          </h4>
+          <ul class="comment-box-area">
+              <li>
+                <div class="comment-box">
+                  <div class="left">
+                    <div class="img">
+                      <img src="assets/images/blog/comment1.png" alt="">
+                    </div>
+                    <a class="replay" href="#">پاسخ</a>
+                  </div>
+                  <div class="right">
+                    <h5 class="name">
+                     زینب پیرولی
+                    </h5>
+                    <p class="date">10 آذر, 1399</p>
+                    <div class="text">
+                      <p>  این یک متن تستی است برای نظر دادن امیدواریم نظرات
+                        ارزشمندتان را با ما در میان بگذارید. </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="comment-box replay-comment">
+                  <div class="left">
+                    <div class="img">
+                      <img src="assets/images/blog/comment2.png" alt="">
+                    </div>
+                    <a class="replay" href="#">پاسخ</a>
+                  </div>
+                  <div class="right">
+                    <h5 class="name">
+                      بیل گیتس
+                    </h5>
+                    <p class="date">10 آذر, 1399</p>
+                    <div class="text">
+                      <p>  این یک متن تستی است برای نظر دادن امیدواریم نظرات
+                        ارزشمندتان را با ما در میان بگذارید. </p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="comment-box">
+                  <div class="left">
+                    <div class="img">
+                      <img src="assets/images/blog/comment2.png" alt="">
+                    </div>
+                    <a class="replay" href="#">پاسخ</a>
+                  </div>
+                  <div class="right">
+                    <h5 class="name">
+                      بیل گیتس
+                    </h5>
+                    <p class="date">10 آذر, 1399</p>
+                    <div class="text">
+                      <p>  این یک متن تستی است برای نظر دادن امیدواریم نظرات
+                        ارزشمندتان را با ما در میان بگذارید. </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="comment-box replay-comment">
+                  <div class="left">
+                    <div class="img">
+                      <img src="assets/images/blog/comment1.png" alt="">
+                    </div>
+                    <a class="replay" href="#">پاسخ</a>
+                  </div>
+                  <div class="right">
+                    <h5 class="name">
+                     زینب پیرولی
+                    </h5>
+                    <p class="date">10 آذر, 1399</p>
+                    <div class="text">
+                      <p>  این یک متن تستی است برای نظر دادن امیدواریم نظرات
+                        ارزشمندتان را با ما در میان بگذارید. </p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+      </div>
+      <div class="write-comment">
+          <h4 class="title">
+            دیدگاه خودرا با ما در میان بگذارید
+          </h4>
+          <form action="#">
+              <div class="row">
+                <div class="col-md-6">
+                  <input type="text" class="input-field borderd" placeholder="نام خود را وارد کنید">
+                </div>
+                <div class="col-md-6">
+                  <input type="email" class="input-field borderd" placeholder="ایمیل خود را وارد کنید">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <textarea class="input-field borderd textarea" placeholder="متن نظر خود را بنویسید"></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <button class="mybtn2" type="submit">
+                    <span>ارسال دیدگاه</span>
+                  </button>
+                </div>
+              </div>
+            </form>
+      </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+    
