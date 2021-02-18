@@ -5,12 +5,16 @@ from json import JSONEncoder
 from django.views.decorators.csrf import csrf_exempt
 from blog.models import *
 from datetime import datetime
+from django.core.paginator import Paginator
 
 def index(request):
     articles = Article.objects.filter(status='p').order_by('-publish')
+    articles_paginator = Paginator(articles,2)
+    page_number = request.GET.get('page')
+    aricles_obj = articles_paginator.get_page(page_number)
     categories = Category.objects.filter(status = True)
     context = {
-        'articles' : articles,
+        'articles' : aricles_obj,
         'categories' : categories
     }
     return render(request,'index.html', context)

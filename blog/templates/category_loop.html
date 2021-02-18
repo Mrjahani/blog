@@ -1,0 +1,7 @@
+{% for cat in cat.children.all %}
+<div class="dropdown-menu">
+    <a class="dropdown-item" href="blog-grid.html">
+        <i class="fas fa-chevron-left"></i> {{ cat.title }}
+    </a>
+</div>
+{% endfor %}
