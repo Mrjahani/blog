@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
 from extensions.utils import jalali_converter
+from django.utils.html import format_html
 
 class Token(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
@@ -48,10 +49,10 @@ class Category(models.Model):
 
 class Article(models.Model):
     STATUS_CHOICES = (
-        ('d','draft'), 
-        ('p' , 'published') 
+        ('d','پیش نویس'), 
+        ('p' , 'منتشر شده' ) 
     )
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255 , verbose_name='عنوان')
     slug = models.SlugField(max_length=255,unique=True, allow_unicode=True)
     category = models.ManyToManyField(Category , verbose_name='دسته بندی' , related_name="articles")
     description = models.TextField()
@@ -59,7 +60,7 @@ class Article(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=1,choices=STATUS_CHOICES)
+    status = models.CharField(max_length=1,choices=STATUS_CHOICES , verbose_name='وضعیت')
 
     # برای فارسی کردن اسم در پنل مدیریت 
     class Meta:
@@ -68,9 +69,11 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
-
+    # فارسی سازی تاریخ 
     def jpublish(self):
         return jalali_converter(self.publish)
     jpublish.short_description = "زمان انتشار"
-    
-
+    # نمایش عکس در پنل مدیریت
+    def thumbnail_image(self):
+        return format_html("<img width=100 src='{}'>".format(self.image.url))
+    thumbnail_image.short_description = 'تصویر'

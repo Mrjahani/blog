@@ -73,7 +73,30 @@
 								<li class="nav-item">
 									<a class="nav-link" href="/">صفحه اصلی</a>
 								</li>
-								
+								{% for category in categories %}
+                
+                  {% if category.parent == None %}
+                  <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{ category.title }}
+                    </a>
+                    {% if category.children.all %}
+                      {% for cat in category.children.all %}
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="blog-grid.html">
+                          <i class="fas fa-chevron-left"></i> {{ cat.title }}
+                          </a>
+                          {% if cat.children.all %}
+                            {% include 'category_loop.html' %}
+                          {% endif %}
+                      </div>
+                      {% endfor %}
+                    {% endif %}
+                      
+                  </li>   
+                  {% endif %}
+                  
+                {% endfor %}
 								
                 <li class="nav-item">
 									<a class="nav-link" href="#about">درباره ما</a>
