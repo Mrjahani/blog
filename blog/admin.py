@@ -3,6 +3,8 @@ from .models import *
 from extensions.utils import jalali_converter
 
 # Register your models here.
+# admin header change
+admin.site.site_header = 'پنل مدیریت پرسنال ادمین'
 
 # action admin
 def make_published(modeladmin, request, queryset):
