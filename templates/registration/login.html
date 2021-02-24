@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,19 +40,28 @@
 
 <body>
 	<div class="limiter">
+		
+		{% if form.non_field_errors %}
+			<div class="errors">
+				{% for error in form.non_field_errors %}
+					<p class="alert alert-danger"> {{ error }}</p>
+				{% endfor %}
+			</div>
+		{% endif %}
+			
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form" method="post">
 					{% csrf_token %}
+					<span class="login100-form-title p-b-48">
+						<img src="{% static 'assets/images/favicon.png' %}" alt="">
+					</span>
 					<span class="login100-form-title p-b-26 myfont">
 						صفحه ورود
 					</span>
-					<span class="login100-form-title p-b-48">
-						<i class="zmdi zmdi-font"></i>
-					</span>
 					<div class="wrap-input100 validate-input myfont" data-validate="Valid email is: a@b.c">
 						<!-- <input class="input100" type="text" name="text"> -->
-						{{ form.username }}
+						{{ form.username | add_class:"input100" }}
 						<span class="focus-input100" data-placeholder="نام کاربری"></span>
 					</div>
 					<div class="wrap-input100 validate-input myfont" data-validate="Enter password">
@@ -59,7 +69,7 @@
 							<i class="zmdi zmdi-eye"></i>
 						</span>
 						<!-- <input class="input100" type="password" name="pass"> -->
-						{{ form.password }}
+						{{ form.password | add_class:"input100" }}
 						<span class="focus-input100 " data-placeholder="رمز عبور"></span>
 					</div>
 					<div class="container-login100-form-btn">
