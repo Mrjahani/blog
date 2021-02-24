@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load base_tags %}
+
+{% block head %}
+	پرسنال ادمین
+{% endblock head %}
+
+
+{% block title %}
+وبلاگ پرسنال ادمین
+{% endblock title %}
+	
+	
+{% block content %}
+<section class="blog-page single-blog-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="row">
+					
+					{% for article in articles %}
+					
+					<div class="col-lg-6 col-md-6">
+						<div class="single-blog">
+							<div class="img">
+								<img src="{{ article.image.url }}" alt="">
+							</div>
+							<div class="content">
+								<ul class="top-meta">
+									<li>
+										<p class="date">
+											{{ article.jpublish }}
+										</p>
+									</li>
+									<li>
+										<p class="post-by">
+											توسط {{ article.author }}
+										</p>
+									</li>
+								</ul>
+								<a href="{% url 'blog:detail_artilce' article.slug %}">
+									<h4 class="title">
+										{{ article.title }}
+									</h4>
+								</a>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+
+				</div>
+				<div class="row">
+					<div class="col-12 d-flex justify-content-center">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination">
+								
+								{% if articles.has_previous %}
+								<li class="page-item">
+									<a class="page-link" href="?page={{ articles.previous_page_number }}" aria-label="Previous">
+										<span aria-hidden="true"><i class="fas fa-angle-double-right"></i></span>
+									</a>
+								</li>
+								{% endif %}
+								{% for i in articles.paginator.page_range %}
+								{% if articles.number == i %}
+								<li class="page-item"><a class="page-link active" href="?page={{ i }}">{{ i }}</a></li>
+								{% else %}
+								<li class="page-item"><a class="page-link " href="?page={{ i }}">{{ i }}</a></li>
+								
+								{% endif %}
+								{% endfor %}
+									
+								{% if articles.has_next %}
+								<!-- <li class="page-item"><a class="page-link" href="?page={{ articles.paginator.num_pages }}">{{ articles.paginator.num_pages }}</a></li> -->
+
+								<li class="page-item">
+									<a class="page-link" href="?page={{ articles.next_page_number }}" aria-label="Next">
+										<span aria-hidden="true"><i class="fas fa-angle-double-left"></i></span>
+									</a>	
+								</li>
+								{% endif %}
+										
+									
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				
+				<div class="categori-widget">
+					<h4 class="title">
+						دسته بندی
+					</h4>
+					<ul class="cat-list">
+						{% for category in categories %}
+						{% if category.parent == None %}
+						<li>
+							<a href="{% url 'blog:category' category.slug %}">
+								<p>
+									{{ category.title }}
+								</p>
+								<span class="count">
+									33
+								</span>
+							</a>
+							{% if category.children.all %}
+							<ul class="cat-list">
+								{% for category in category.children.all %}
+								<li>
+									<a href="{% url 'blog:category' category.slug %}">
+										<p>
+											{{ category.title }}
+										</p>
+										<!-- <span class="count">
+											33
+										</span> -->
+									</a>
+									
+								</li>
+								{% endfor %}
+							</ul>
+							{% endif %}
+						</li>
+						{% endif %}
+						{% endfor %}
+					</ul>
+				</div>
+				<div class="latest-post-widget">
+					<h4 class="title">
+					آخرین خبرها
+					</h4>
+					<ul class="post-list">
+						<li>
+							<div class="post">
+								<div class="post-img">
+									<img src="/static/assets/images/blog/img1.png" alt="">
+								</div>
+								<div class="post-details">
+									<a href="#" class="post-title">
+									لورم ایپسوم متن ساختگی 
+									</a>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="post">
+								<div class="post-img">
+									<img src="/static/assets/images/blog/img2.png" alt="">
+								</div>
+								<div class="post-details">
+									<a href="#" class="post-title">
+									لورم ایپسوم متن ساختگی
+									</a>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="post">
+								<div class="post-img">
+									<img src="/static/assets/images/blog/img3.png" alt="">
+								</div>
+								<div class="post-details">
+									<a href="#" class="post-title">
+									لورم ایپسوم متن ساختگی
+									</a>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="post">
+								<div class="post-img">
+									<img src="/static/assets/images/blog/img4.png" alt="">
+								</div>
+								<div class="post-details">
+									<a href="#" class="post-title">
+								لورم ایپسوم متن ساختگی
+									</a>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="newsletter-widget">
+					<h4 class="title">
+							خبرنامه 
+					</h4>
+					<form action="#">
+						<input type="text" class="input-field" placeholder="ایمیل خود را وارد کنید">
+						<button type="submit" class="mybtn2">
+			<span>عضویت</span>
+		  </button>
+					</form> 
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock content %}
+	

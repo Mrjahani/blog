@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'IRANSansWeb';
+    src: url('../../../assets/fonts/IRANSansWeb.woff');
+    font-style: normal;
+}
+body{
+    direction: rtl ! important;
+    text-align: right ! important;
+    font-family: "IRANSansWeb" ! important;
+}
+
+.myfont , .focus-input100::after {
+    font-family: "IRANSansWeb" ! important;
+}
+
+.btn-show-pass {
+    right: initial;
+    left : 0 !important;
+}

@@ -52,6 +52,7 @@ class Article(models.Model):
         ('d','پیش نویس'), 
         ('p' , 'منتشر شده' ) 
     )
+    author = models.ForeignKey(User , null=True , on_delete=models.SET_NULL , related_name='articles' , verbose_name='نویسنده')
     title = models.CharField(max_length=255 , verbose_name='عنوان')
     slug = models.SlugField(max_length=255,unique=True, allow_unicode=True)
     category = models.ManyToManyField(Category , verbose_name='دسته بندی' , related_name="articles")

@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from blog.models import *
 from datetime import datetime
 from django.core.paginator import Paginator
+from django.views.generic.list import ListView
 
 def index(request):
     articles = Article.objects.filter(status='p').order_by('-publish')
@@ -20,6 +21,16 @@ def index(request):
     return render(request,'index.html', context)
     #return HttpResponse("hi masoud")
     #all_post = Post.object.all()
+
+# class base view
+# class ArticleList(ListView):
+#     # تمامی مقالات را بر می گرداند 
+#     # model = Article
+#     context_object_name = 'articles'
+#     template_name = 'index.html'
+#     queryset = Article.objects.filter(status='p').order_by('-publish')
+#     paginate_by = 2
+
 
 
 @csrf_exempt

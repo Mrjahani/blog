@@ -30,7 +30,7 @@ admin.site.register(Expense,ExpenseAdmin)
 
 
 class ArticleAdmin(admin.ModelAdmin):
-	list_display = ('thumbnail_image' , 'title' , 'status', 'jpublish' , 'category_str')
+	list_display = ('thumbnail_image' , 'title' ,'author', 'status', 'jpublish' , 'category_str')
 	list_filter = ('status' , 'publish')
 	search_fields = ('title','description')
 	# با پر کردن عنوان اسلاگ هم پر میشه 
