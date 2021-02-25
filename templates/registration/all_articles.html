@@ -1,0 +1,66 @@
+{% extends 'registration/base.html' %}
+
+
+{% block head %}
+    لیست مقالات
+{% endblock head %}
+    
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+      <h3 class="card-title"></h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <table id="example1" class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th>عنوان</th>
+          <th>تصویر</th>
+          <th>نویسنده</th>
+          <th>دسته بندی</th>
+          <th>زمان انتشار</th>
+          <th>وضعیت</th>
+        </tr>
+        </thead>
+        <tbody>
+
+            {% for article in object_list %}
+            <tr>
+                <td>{{ article.title }}</td>
+                <td>{{ article.thumbnail_image }}</td>
+                <td>{{ article.author.get_full_name }}</td>
+                <td>{{ article.category_str }}</td>
+                <td> {{ article.jpublish }}</td>
+                <td>
+                    
+                    {% if article.status == 'p' %}
+                        <span class="badge badge-success">منتشر شده</span>
+                        <a href="{% url 'blog:detail_artilce' article.slug %}" target="_blank" class="badge badge-primary">نمایش مقاله</a>
+                    {% else %}
+                        <span class="badge badge-danger">پیش نویس</span>
+                    {% endif %}
+                        
+                </td>
+            </tr>
+            {% endfor %}
+        
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>عنوان</th>
+            <th>تصویر</th>
+            <th>نویسنده</th>
+            <th>دسته بندی</th>
+            <th>زمان انتشار</th>
+            <th>وضعیت</th>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+    <!-- /.card-body -->
+  </div>
+
+{% endblock content %}
+    

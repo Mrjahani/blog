@@ -1,9 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+# برای url استفاده می شود 
 from django.urls import reverse
 from django.utils import timezone
 from extensions.utils import jalali_converter
 from django.utils.html import format_html
+from ckeditor_uploader.fields import RichTextUploadingField
 
 class Token(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
@@ -54,11 +56,11 @@ class Article(models.Model):
     )
     author = models.ForeignKey(User , null=True , on_delete=models.SET_NULL , related_name='articles' , verbose_name='نویسنده')
     title = models.CharField(max_length=255 , verbose_name='عنوان')
-    slug = models.SlugField(max_length=255,unique=True, allow_unicode=True)
+    slug = models.SlugField(max_length=255,unique=True, allow_unicode=True , verbose_name='آدرس')
     category = models.ManyToManyField(Category , verbose_name='دسته بندی' , related_name="articles")
-    description = models.TextField()
-    image = models.ImageField(upload_to="images",null=True)
-    publish = models.DateTimeField(default=timezone.now)
+    description = RichTextUploadingField(config_name='default', verbose_name='توضیحات')
+    image = models.ImageField(upload_to="images",null=True , verbose_name='تصویر')
+    publish = models.DateTimeField(default=timezone.now , verbose_name='زمان انتشار')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=1,choices=STATUS_CHOICES , verbose_name='وضعیت')
@@ -78,3 +80,11 @@ class Article(models.Model):
     def thumbnail_image(self):
         return format_html("<img width=100 src='{}'>".format(self.image.url))
     thumbnail_image.short_description = 'تصویر'
+
+    # نمایش دسته بندی ها در بخش مقالات
+    def category_str(self):
+        return ", ".join([category.title for category in self.category.all()])
+    category_str.short_description = 'دسته بندی'
+    # برای ریدایرکت شدن به صفحه مقاله ها در پنل اکانت
+    def get_absolute_url(self):
+        return reverse("account:articles")

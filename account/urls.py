@@ -19,6 +19,7 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    # path('', home, name='home'),
-    path('', ArticleList.as_view(), name='articles'),
+    path('', home, name='home'),
+    path('articles/', ArticleList.as_view(), name='articles'),
+    path('articles/create' , ArticleCreate.as_view() , name='articles_create')
 ]

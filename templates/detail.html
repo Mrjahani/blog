@@ -40,12 +40,7 @@
               </a>
               <div class="text-area">
                   
-                  <blockquote>
-                      <p>
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است
-                      </p>
-                  </blockquote>
-                  {{ article.description | linebreaks }}
+                  {{ article.description | safe | linebreaks }}
               </div>
           </div>
       </div>

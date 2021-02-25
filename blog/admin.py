@@ -38,10 +38,6 @@ class ArticleAdmin(admin.ModelAdmin):
 	# برای بخش اکشن و مدیریت مقاله ها
 	actions = [make_published , make_draft]
 
-	# نمایش دسته بندی ها در بخش مقالات
-	def category_str(self , obj):
-		return ", ".join([category.title for category in obj.category.all()])
-	category_str.short_description = 'دسته بندی'
 
 admin.site.register(Article , ArticleAdmin)
 
