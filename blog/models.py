@@ -1,5 +1,8 @@
 from django.db import models
-from django.contrib.auth.models import User
+# برای استفاده auth خود جنگو
+# from django.contrib.auth.models import User
+# برای استفاده از سطج دسترسی های خودمون
+from account.models import User
 # برای url استفاده می شود 
 from django.urls import reverse
 from django.utils import timezone
