@@ -21,5 +21,7 @@ urlpatterns = [
 urlpatterns += [
     path('', home, name='home'),
     path('articles/', ArticleList.as_view(), name='articles'),
-    path('articles/create' , ArticleCreate.as_view() , name='articles_create')
+    path('articles/create' , ArticleCreate.as_view() , name='articles_create'),
+    path('articles/update/<int:pk>' , ArticleUpdate.as_view() , name='article_update'),
+    path('articles/delete/<int:pk>' , ArticleDelete.as_view() , name='articles_delete'),
 ]
