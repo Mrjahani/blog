@@ -35,12 +35,16 @@
                 <div class="form-group col-md-12 mb-0">
                     {{ form.description | as_crispy_field }}
                 </div>
+                
+                {% if user.is_superuser %}
                 <div class="form-group col-md-6 mb-0">
                     {{ form.status|as_crispy_field }}
                 </div>
                 <div class="form-group col-md-6 mb-0">
                     {{ form.author|as_crispy_field }}
                 </div>
+                {% endif %}
+                    
                 <div class="form-group col-md-12 mb-0 center">
                     <button class="btn btn-success" type="submit"> ایجاد مقاله</button>
                 </div>
